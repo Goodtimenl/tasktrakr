@@ -13,6 +13,7 @@ import {
 import * as Font from "expo-font";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { LinearGradient } from "expo-linear-gradient";
+import Footer from "./src/components/footer";
 
 export default function App() {
   const [clientName, setClientName] = useState("");
@@ -250,6 +251,7 @@ export default function App() {
           </ScrollView>
         </View>
       </SafeAreaView>
+      <Footer />
     </LinearGradient>
   );
 }
@@ -257,7 +259,7 @@ export default function App() {
 const styles = StyleSheet.create({
   linearGradient: {
     flex: 1,
-    alignItems: "start",
+    alignItems: "center",
   },
 
   logo: {

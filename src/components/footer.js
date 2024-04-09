@@ -6,13 +6,13 @@ export default function Footer() {
   return (
     <View style={styles.footer}>
       <TouchableOpacity style={styles.iconContainer}>
-        <FontAwesome name="facebook" size={30} color="#3b5998" />
+        <FontAwesome name="facebook" size={20} color="#d4d4d4" />
       </TouchableOpacity>
       <TouchableOpacity style={styles.iconContainer}>
-        <FontAwesome name="times" size={30} color="red" />
+        <FontAwesome name="twitter" size={20} color="#d4d4d4" />
       </TouchableOpacity>
       <TouchableOpacity style={styles.iconContainer}>
-        <FontAwesome name="linkedin" size={30} color="#0077b5" />
+        <FontAwesome name="linkedin" size={20} color="#d4d4d4" />
       </TouchableOpacity>
     </View>
   );
@@ -21,10 +21,10 @@ export default function Footer() {
 const styles = StyleSheet.create({
   footer: {
     flexDirection: "row",
-    justifyContent: "space-around",
+    justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#f0f0f0",
-    paddingVertical: 20,
+    padding: 20,
+    gap: 10,
   },
   iconContainer: {
     alignItems: "center",
