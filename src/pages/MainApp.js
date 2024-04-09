@@ -33,7 +33,7 @@ export default function marginHorizontal() {
         MontSb: require("../../assets/Montserrat-SemiBold.ttf"),
         MontT: require("../../assets/Montserrat-Thin.ttf"),
       });
-      setFontsLoaded(true); // Assurez-vous que cette fonction est appelée une fois le chargement terminé
+      setFontsLoaded(true);
     }
     loadFonts();
   }, []);
@@ -75,7 +75,7 @@ export default function marginHorizontal() {
     setTasks(
       tasks.map((task, i) => {
         if (i === index) {
-          // Annuler l'intervalle précédent avant d'en démarrer un nouveau
+          // annule l'intervalle précédent avant d'en démarrer un nouveau
           if (task.timer) clearInterval(task.timer);
 
           return {
@@ -163,6 +163,11 @@ export default function marginHorizontal() {
     return () => tasks.forEach((task) => clearInterval(task.timer)); // Nettoyer les intervalles
   }, []);
 
+  const deleteAllTasks = () => {
+    setTasks([]);
+    saveTasks();
+  };
+
   if (!fontsLoaded) {
     return (
       <View style={styles.loaderContainer}>
@@ -206,6 +211,16 @@ export default function marginHorizontal() {
           <TouchableOpacity onPress={addTask} style={styles.addButton}>
             <Text style={styles.addButtonText}>Ajouter une tâche</Text>
           </TouchableOpacity>
+          {tasks.length > 0 && (
+            <TouchableOpacity
+              onPress={deleteAllTasks}
+              style={styles.deleteAllButton}
+            >
+              <Text style={styles.deleteAllButtonText}>
+                Supprimer toutes les tâches
+              </Text>
+            </TouchableOpacity>
+          )}
         </View>
         <View style={styles.tasksContainer}>
           <ScrollView horizontal>
@@ -324,13 +339,30 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
 
+  deleteAllButton: {
+    margin: 20,
+    backgroundColor: "#d4d4d4",
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 5,
+    borderColor: "#d4d4d4",
+    borderWidth: 1,
+    marginLeft: 10, // Pour espacer du bouton "Ajouter une tâche"
+  },
+
+  deleteAllButtonText: {
+    fontFamily: "MontM",
+    color: "#213050",
+    fontSize: 16,
+    textAlign: "center",
+  },
+
   taskContainers: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
     paddingVertical: 10,
     paddingStart: 30,
-    marginBottom: 100,
   },
 
   task: {
@@ -345,7 +377,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "rgba(255, 255, 255, 0.67)",
     marginHorizontal: 10,
-    marginBottom: 100,
+    marginBottom: 50,
   },
 
   taskContent: {
